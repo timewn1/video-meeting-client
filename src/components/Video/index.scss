@@ -1,0 +1,94 @@
+.video-ele {
+    min-width: 160px;
+    min-height: 100px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    transition-duration: .5s;
+    transition-property: top, left;
+    transition-timing-function: ease-out;
+    border-radius: 8px;
+    overflow: hidden;
+
+    video {
+        height: 100%;
+        width: 100%;
+    }
+
+    .controller {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 1.2em;
+
+        .drag-over {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .dragable {
+            &:hover {
+                cursor: move;
+            }
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, .6);
+            border-radius: 50%;
+            width: 10%;
+            min-width: 2em;
+            max-width: 3em;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1em;
+            z-index: 3;
+
+            &:hover {
+                background-color: rgba(180, 180, 180, 0.7);
+                color: rgba(255, 255, 255, .9);
+                cursor: pointer;
+            }
+        }
+
+        p {
+            position: absolute;
+            bottom: 5px;
+            left: 20px;
+            margin: 0;
+            padding: .5em;
+            color: var(--white);
+            text-shadow: 1px 1px 2px #161616;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    }
+
+    .mirror-mode {
+        -ms-transform: scaleX(-1);
+        -moz-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+    }
+
+    .v-cover {
+        object-fit: cover;
+
+        &#screen {
+            object-fit: contain;
+        }
+    }
+}

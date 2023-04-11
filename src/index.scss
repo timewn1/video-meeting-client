@@ -1,0 +1,31 @@
+:root {
+  --primary: #009900;
+  --border: #38c172;
+  --white: #fff;
+  --danger: #f00;
+  --danger-hover: #f55b5b;
+  --grey: #999;
+  --grey-dim: rgba(46, 46, 46, 0.6);
+  --grey-dark: rgba(46, 46, 46);
+  --border-active: #73ffc9;
+  --border-contact: #c7eed8;
+  --contact-back: #d7f3e3;
+  --contact: #1d643b;
+  --green: #38c172;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

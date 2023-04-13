@@ -19,6 +19,7 @@ export default {
             return navigator.mediaDevices.getUserMedia(constraints);
         } else {
             alert('User Media not Available');
+            return null;
         }
     },
 

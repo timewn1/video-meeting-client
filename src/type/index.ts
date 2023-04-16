@@ -1,26 +1,5 @@
-export interface IHost {
-    id: number;
-    username: string;
-    image: string;
-}
-
-export interface IRecorder {
-    id: string;
-    fee: number;
-    feeType: string;
-}
-
 export interface IUser {
-    id: number;
-    first_name: string;
-    last_name: string;
     username: string;
-    gender: number;
-    image: string;
-}
-
-export interface IKunnec extends IUser {
-    user_id: number,
 }
 
 export interface IPc extends IUser {

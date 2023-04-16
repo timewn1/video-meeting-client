@@ -157,7 +157,7 @@ export default {
                     guestElement[i].style.height = modalWidth * 5 / 8 + 'px';
                     guestElement[i].style.top = height / 20 + (modalWidth * 5 / 8 + height / 20) * i + 'px';
                     guestElement[i].style.left = width - 30 - modalWidth + 'px';
-                    guestElement[i].style.border = '1px solid #328132';
+                    guestElement[i].style.border = '1px solid rgb(94 94 94)';
                     guestElement[i].style.overflow = 'hidden';
                     guestElement[i].childNodes[1].childNodes[0].classList.add('dragable');
                 }
@@ -236,7 +236,7 @@ export default {
                             elements[index].style.top = top + 'px';
                             elements[index].style.left = left + 'px';
                             elements[index].style.overflow = 'hidden';
-                            elements[index].style.border = '1px solid #328132';
+                            elements[index].style.border = '1px solid rgb(94 94 94)';
                             elements[index].childNodes[1].childNodes[0].classList.remove('dragable');
                         }
                     }
@@ -247,7 +247,7 @@ export default {
             hostElement.style.height = modalWidth * 5 / 8 + 'px';
             hostElement.style.top = height - height / 20 - modalWidth * 5 / 8 + 'px';
             hostElement.style.left = width - 30 - modalWidth + 'px';
-            hostElement.style.border = '1px solid #328132';
+            hostElement.style.border = '1px solid rgb(94 94 94)';
             hostElement.style.overflow = 'hidden';
             hostElement.childNodes[1].childNodes[0].classList.add('dragable');
         }
@@ -315,7 +315,7 @@ export default {
                     elements[index].style.top = top + 'px';
                     elements[index].style.left = left + 'px';
                     elements[index].style.overflow = 'hidden';
-                    elements[index].style.border = '1px solid #328132';
+                    elements[index].style.border = '1px solid rgb(94 94 94)';
                     elements[index].childNodes[1].childNodes[0].classList.remove('dragable');
                 }
             }

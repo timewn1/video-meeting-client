@@ -1,21 +1,14 @@
 nav {
-    height: 4.5em;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 8em;
+    width: 100%;
     padding: 20px 1em;
     color: var(--white);
     display: flex;
     align-items: center;
-    background-color: var(--primary);
-
-    >img {
-        width: 4em;
-        height: auto;
-        vertical-align: middle;
-        margin-right: 10px;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
+    background-color: transparent;
 
     h1 {
         font-size: 1.3em;
@@ -26,21 +19,19 @@ nav {
 
     >div {
         width: 100%;
-        max-width: 1400px;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         position: relative;
     }
 
     .x-btn {
         display: flex;
-        gap: 0.5em;
+        gap: .7em;
     }
 
     .x-controller {
         position: absolute;
-        right: 200px;
         z-index: 3;
 
         >span {
@@ -48,22 +39,20 @@ nav {
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid var(--border);
+            border: 1px solid var(--white);
             padding: 0.7em;
             border-radius: 50%;
             font-size: 1.1em;
 
             &:hover {
                 cursor: pointer;
-                border: 1px solid var(--primary);
+                background-color: #333;
             }
 
             &.active {
-                color: var(--danger);
-
-                &:hover {
-                    color: var(--danger-hover);
-                }
+                color: var(--white);
+                border-color: red;
+                background: red;
             }
 
             >.badge {
@@ -94,77 +83,6 @@ nav {
 
         @media (max-width: 506px) {
             top: 4.1em;
-        }
-    }
-
-    .exit-btn {
-        background: red;
-        color: white;
-        border: none;
-        padding: 10px 1em;
-        font-size: .8em;
-        font-weight: 500;
-        margin-left: 200px;
-        margin-top: 5px;
-        margin-bottom: 5px;
-
-        &:hover {
-            background-color: rgb(255, 80, 80);
-        }
-
-        &:active {
-            background-color: rgb(255, 120, 120);
-        }
-
-        @media (max-width: 956px) {
-            margin-left: 30px;
-        }
-
-        @media (max-width: 768px) {
-            margin-left: 0;
-        }
-    }
-
-    .x-code {
-        padding: 0 1em;
-        border-radius: 1em;
-        max-width: 240px;
-
-        >p {
-            padding-left: 2.2em;
-            margin: .1em 0;
-            font-size: 1.1em;
-        }
-
-        >div {
-            display: flex;
-            align-items: center;
-        }
-
-        img {
-            height: 2em;
-            aspect-ratio: 1/1;
-            margin-right: .4em;
-            border-radius: 50%;
-        }
-
-        .spot-name {
-            display: block;
-            font-size: 1.1em;
-        }
-
-        @media (max-width: 506px) {
-            padding: 0 .2em;
-
-            >p {
-                position: fixed;
-                top: 5.1em;
-                left: 10px;
-                padding-left: 0;
-                margin: auto;
-                text-shadow: 1px 1px 2px #161616;
-                z-index: 5;
-            }
         }
     }
 

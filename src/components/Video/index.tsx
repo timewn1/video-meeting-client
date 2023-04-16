@@ -94,9 +94,9 @@ const Video = (props: IProps) => {
         <div className={`video-ele video-${props.type}`} id={`video-${props.id}`}>
             {
                 props.type === "host" ?
-                    <video poster="image/spot_bg_mirror.png" autoPlay={true} muted className={`videoElement mirror-mode v-cover ${props.type}`} id={props.type} />
+                    <video poster="" autoPlay={true} muted className={`videoElement mirror-mode v-cover ${props.type}`} id={props.type} />
                     :
-                    <video poster="image/spot_bg.png" autoPlay={true} className={`videoElement v-cover ${props.type}`} id={props.type === 'screen' ? 'screen' : props.id} />
+                    <video poster="" autoPlay={true} className={`videoElement v-cover ${props.type}`} id={props.type === 'screen' ? 'screen' : props.id} />
             }
             <div className="controller">
                 <div className="drag-over" data-ele={props.id}></div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Store } from 'react-notifications-component';
 import {
     FaCog,
+    FaPhone,
     FaVideo,
     FaDesktop,
     FaVideoSlash,
@@ -10,18 +11,17 @@ import {
 } from 'react-icons/fa';
 import {
     BsXLg,
-    // BsRecordCircle,
     BsFillChatRightDotsFill,
     BsFillFileEarmarkCheckFill
 } from 'react-icons/bs';
 import { BiSend } from 'react-icons/bi';
 import { ImAttachment } from 'react-icons/im';
 
-import { IPc, IActive, IMessage, IHost, IRecorder } from '../../type';
+import { IPc, IActive, IMessage } from '../../type';
 
 import Utills from '../../lib/utills.js';
 
-import { MAIN_URL, SERVER_URL } from '../../config/index.ts';
+import { SERVER_URL } from '../../config/index.ts';
 
 import { ChatElement } from '../ChatElement';
 
@@ -32,13 +32,9 @@ type onSettingFunction = (index: string, type: string) => void;
 type screenSharingFunction = () => void;
 
 interface IProps {
-    time: number;
-    host: IHost | null;
-    myPc: IPc | null;
+    hostPc: IPc | null;
     socket: any;
     partner: IPc[];
-    amount: number;
-    recorder: IRecorder | null;
     onToggle: toggleFunction;
     screenSharing: screenSharingFunction;
     onSetting: onSettingFunction;
@@ -116,7 +112,7 @@ const Navbar = (props: IProps) => {
     }
 
     const sendMessage = async () => {
-        if (!props.host) return;
+        if (!props.hostPc) return;
 
         if (fileName !== '') {
             if (fileRef.current && fileRef.current.files) {
@@ -126,8 +122,8 @@ const Navbar = (props: IProps) => {
                         time: new Date(),
                         isFile: true,
                         content: fileName,
-                        user_id: props.myPc?.clientId,
-                        userName: props.host.username,
+                        user_id: props.hostPc?.clientId,
+                        userName: props.hostPc?.username,
                         uploadedName: uploadedName,
                     }
 
@@ -182,8 +178,8 @@ const Navbar = (props: IProps) => {
                 const data = {
                     time: new Date(),
                     content: chatText,
-                    user_id: props.myPc?.clientId,
-                    userName: props.host.username,
+                    user_id: props.hostPc?.clientId,
+                    userName: props.hostPc?.username,
                     isFile: false,
                 }
 
@@ -239,6 +235,11 @@ const Navbar = (props: IProps) => {
             fileDisplayRef.current.style.display = 'none';
     }
 
+    const onExit = () => {
+        window.sessionStorage.clear();
+        window.location.href = '/';
+    }
+
     useEffect(() => {
         getDevices();
     }, []);
@@ -261,15 +262,7 @@ const Navbar = (props: IProps) => {
     return (
         <>
             <nav>
-                <img src="image/logo.png" alt="logo" />
                 <div>
-                    <div className="x-code">
-                        <div>
-                            <img src={Utills.urlString(props.host?.image)} alt="user" />
-                            <span className="spot-name">{props.host?.username} session</span>
-                        </div>
-                        <p>{Utills.convertTrackingTime(props.time)}</p>
-                    </div>
                     <div className="x-btn x-controller">
                         <span onClick={() => changeActive('chat')}>
                             <BsFillChatRightDotsFill />
@@ -281,9 +274,10 @@ const Navbar = (props: IProps) => {
                         <span onClick={() => changeActive('audio')}>{activeButton.audio ? <FaMicrophone /> : <FaMicrophoneSlash />}</span>
                         <span onClick={() => changeActive('video')}>{activeButton.video ? <FaVideo /> : <FaVideoSlash />}</span>
                         <span onClick={() => changeActive('setting')}><FaCog /></span>
-                        {/* <span onClick={recording}><BsRecordCircle /></span> */}
+                        <span className="active" onClick={() => changeActive('exit')}>
+                            <FaPhone />
+                        </span>
                     </div>
-                    <button className="active exit-btn" onClick={() => changeActive('exit')}>Exit&nbsp;Session</button>
                 </div>
             </nav>
             <div className={`modal left ${activeButton.chat ? "show" : ""}`} onClick={() => setBadge(false)}>
@@ -295,7 +289,7 @@ const Navbar = (props: IProps) => {
                         <div>
                             {
                                 chatList.map((ele, index) => (
-                                    <ChatElement key={index} {...{ data: ele, myId: props.myPc?.clientId + '' }} />
+                                    <ChatElement key={index} {...{ data: ele, myId: props.hostPc?.clientId + '' }} />
                                 ))
                             }
                         </div>
@@ -335,34 +329,9 @@ const Navbar = (props: IProps) => {
                 <div className="modal-content">
                     <div className="modal-footer">
                         <h1>Do you want to exit this session?</h1>
-                        <div className="info-body">
-                            <div className="info-row">
-                                <span>Host : </span>
-                                <span>{props.host?.username}</span>
-                            </div>
-                            <div className="info-row">
-                                <span>Fee type : </span>
-                                <span>{props.recorder?.feeType === '1' ? 'hourly' : 'flat'}</span>
-                            </div>
-                            <div className="info-row">
-                                <span>Fee : </span>
-                                <span>{props.recorder?.fee}</span>
-                            </div>
-                            {
-                                props.host?.id !== props.myPc?.id &&
-                                <div className="info-row">
-                                    <span>Paid amount : </span>
-                                    <span>{props.amount}</span>
-                                </div>
-                            }
-                            <div className="info-row">
-                                <span>Time : </span>
-                                <span>{Utills.convertTrackingTime(props.time)}</span>
-                            </div>
-                        </div>
                         <div className="btn-group">
-                            <button onClick={() => window.location.href = `${MAIN_URL}/kunnec-record/details/${props.recorder?.id}`}>Yes</button>
-                            <button className="no-btn" onClick={() => changeActive('exit')}>No</button>
+                            <button onClick={onExit}>Yes</button>
+                            <button onClick={() => changeActive('exit')}>No</button>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import { MAIN_URL } from "../config";
+// import { MAIN_URL } from "../config";
 
 export default {
     convertTime: (d) => {
@@ -14,7 +14,8 @@ export default {
 
             if (url.includes('http')) return url;
             else {
-                return `${MAIN_URL}/public/user-dash/images/users/profiles/${url}`;
+                // return `${MAIN_URL}/public/user-dash/images/users/profiles/${url}`;
+                return '';
             }
         }
     },

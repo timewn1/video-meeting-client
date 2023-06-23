@@ -15,7 +15,7 @@ import './index.scss';
 
 const socketIOClient = require('socket.io-client');
 
-const ENDPOINT = `${SERVER_URL}/stream`;
+const ENDPOINT = `${SERVER_URL}/meeting`;
 
 const socket = socketIOClient(ENDPOINT);
 
